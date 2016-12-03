@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/MyAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapse_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/backgroundColor"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/bgheader"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="70dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/spider2"
+                    app:layout_collapseMode="pin" />
+
+                <ImageView
+                    android:id="@+id/imagemCapaDetalhes"
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="80dp"
+                    android:background="@drawable/borda"
+                    android:elevation="5dp"
+                    android:onClick="showFullImage"
+                    android:scaleType="centerCrop"
+                    android:transitionName="imagemCompartilhada"
+                    app:layout_collapseMode="pin" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/MyToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00ffffff"
+                    android:onClick="goBack"
+                    android:src="@drawable/ic_arrow_back_white_24dp" />
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7">
+
+
+            <TextView
+                android:id="@+id/tituloPrincipalRevista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teste"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/descricaoRevista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tituloPrincipalRevista"
+                android:layout_marginTop="20dp"
+                android:text="lorem ipsum"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/labelDataPublicacao"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/descricaoRevista"
+                android:layout_marginTop="10dp"
+                android:text="Published: "
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_size_small"
+                />
+
+            <TextView
+                android:id="@+id/dataPublicacao"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/descricaoRevista"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/labelDataPublicacao"
+                android:text="teste"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_size_small"/>
+
+            <TextView
+                android:id="@+id/labelPrice"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/labelDataPublicacao"
+                android:layout_marginTop="10dp"
+                android:text="Price: "
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_size_small"/>
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/labelDataPublicacao"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/labelPrice"
+                android:text="teste"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_size_small"/>
+
+            <TextView
+                android:id="@+id/labelPages"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/price"
+                android:layout_marginTop="10dp"
+                android:text="Pages: "
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_size_small"/>
+
+            <TextView
+                android:id="@+id/pages"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/price"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/labelPages"
+                android:text="teste"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/text_size_small"/>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

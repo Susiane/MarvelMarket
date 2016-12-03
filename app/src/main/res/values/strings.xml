@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MarvelMarket</string>
+    <string name="susi_profissao">Susiane - Desenvolvedora</string>
+    <string name="linguagens">Linguagens</string>
+    <string name="funcao">Android</string>
+    <string name="projetos">Projetos</string>
+    <string name="nome_aplicativo">1) Aplicativo ProFibro</string>
+    <string name="programadora_java">Java</string>
+    <string name="informação">Informações</string>
+    <string name="videos">Vídeos e Audios</string>
+    <string name="aprendizagem">Aprendizagem</string>
+    <string name="direitos_marvel">Data provided by Marvel. © 2014 Marvel</string>
+    <string name="API_KEY">AIzaSyBnOM8ylo126LNcM-HP75aMNAGxdW5KfHQ</string>
+</resources>
