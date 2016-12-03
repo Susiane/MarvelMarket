@@ -217,31 +217,6 @@ public class RevistaDetalhes extends AppCompatActivity
                 //configura o tipo de mapa:
                 map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-                /*//faz aparecer infoWindow:
-                map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-                    @Override
-                    public View getInfoWindow(Marker marker) {
-                        return null;
-                    }
-
-                    @Override
-                    public View getInfoContents(Marker marker) {
-                        View infoWindow = configuraInfoWindow(marker);
-                        return infoWindow;
-                    }
-                });
-
-                //habilita o click no infoWindow
-                map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                    @Override
-                    public void onInfoWindowClick(Marker marker) {
-
-                        Intent intent = new Intent(Percurso_principal.this, ComprasActivity.class);
-                        intent.putExtra("compraSelecionada",recuperaSnippet(marker.getSnippet()));
-                        startActivity(intent);
-
-                    }
-                });*/
             }
         }
         return(map != null);
@@ -371,19 +346,6 @@ public class RevistaDetalhes extends AppCompatActivity
                         "#"+banca.getPreco()+"#");
 
                 marker = map.addMarker(markerOptions);
-
-
-
-
-
-        //contador++;
-
-
-        // Fazendo com que a camera tenha uma posição boa a ser exibida:
-
-        /*CameraUpdate update = CameraUpdateFactory.newLatLngZoom(localidade.getCoordenadas(), 16);
-        map.moveCamera(update);*/
-
 
     }
 

@@ -119,10 +119,8 @@ public class MainActivity extends AppCompatActivity {
         protected Revista[] doInBackground(String... params) {
             try {
 
-                //Request request = new Request.Builder().url("http://gateway.marvel.com/v1/public/characters/1009610/comics?ts=1&apikey=bb4470a46d0659" +
-                                //"a43c566ac6056ed48d&hash=479474cf0a28eac9998960da4d96f06b").build();
-
-                Request request = new Request.Builder().url("http://www.virtualdatabase.com.br/others/receive.json").build();
+                Request request = new Request.Builder().url("http://gateway.marvel.com/v1/public/characters/1009610/comics?ts=1&apikey=bb4470a46d0659" +
+                                "a43c566ac6056ed48d&hash=479474cf0a28eac9998960da4d96f06b").build();
 
                 Response response = client.newCall(request).execute();
                 String json = response.body().string();
