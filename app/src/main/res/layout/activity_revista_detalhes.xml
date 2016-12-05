@@ -176,7 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/labelPages"
-                android:text="Onde Comprar"
+                android:text="@string/onde_comprar"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/text_size_small"

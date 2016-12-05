@@ -26,6 +26,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -61,6 +63,9 @@ public class RevistaDetalhes extends AppCompatActivity
     private GoogleApiClient mGoogleApiClient;
     private Banca[] arrayBancas;
     private Marker marker;
+    private static final String REVISTA_SELECIONADA_BUNDLE = "revistaSelecionada";
+    private CameraUpdate update;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +101,9 @@ public class RevistaDetalhes extends AppCompatActivity
         txt_pages = (TextView) findViewById(R.id.pages);
         //<-
 
-        //->  Pegando dados da Activity anterior
+
         Intent intent = getIntent();
-        revista = (Revista) intent.getSerializableExtra("revistaSelecionada");
+        revista = (Revista) intent.getSerializableExtra(REVISTA_SELECIONADA_BUNDLE);
         //<-
 
         //->  Preenchendo dados na tela
@@ -112,7 +117,7 @@ public class RevistaDetalhes extends AppCompatActivity
 
         txt_published.setText(revista.getDates().toString());
 
-        // Chegando se a revista possui versão digital (além da versão em papel)
+        // Checando se a revista possui versão digital (além da versão em papel)
         if (revista.getPrices("digital")!=0.0){
             txt_price.setText("$ "+revista.getPrices("paper")+" (Paperback)"+ "\n$ "+
                     revista.getPrices("digital")+ " (Digital Version)");
@@ -125,10 +130,11 @@ public class RevistaDetalhes extends AppCompatActivity
 
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.MyToolbar);
+        toolbar.setTitle("");
+        toolbar.setSubtitle("");
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        // Get a support ActionBar corresponding to this toolbar
-        ActionBar ab = getSupportActionBar();
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
         collapsingToolbarLayout.setTitleEnabled(false);
@@ -145,6 +151,7 @@ public class RevistaDetalhes extends AppCompatActivity
             finish();
         }
 
+
     }
 
     //-> Atribuindo função no clique da Capa da Revista (Exibindo ela maior):
@@ -152,7 +159,7 @@ public class RevistaDetalhes extends AppCompatActivity
     public void showFullImage(View v) {
 
         Intent intent = new Intent(this, RevistaCapaInteira.class);
-        intent.putExtra("revistaSelecionada", revista);
+        intent.putExtra(REVISTA_SELECIONADA_BUNDLE, revista);
         intent.setAction(Intent.ACTION_VIEW);
 
 
@@ -206,19 +213,12 @@ public class RevistaDetalhes extends AppCompatActivity
      * @return
      */
     private boolean initMap(){
-        if (map == null){
-            SupportMapFragment mapFragment =
-                    (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-            map = mapFragment.getMap();
 
+        SupportMapFragment mapFragment =
+                (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        map = mapFragment.getMap();
+        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-            if(map != null){
-
-                //configura o tipo de mapa:
-                map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-            }
-        }
         return(map != null);
 
     }
@@ -321,13 +321,23 @@ public class RevistaDetalhes extends AppCompatActivity
             try {
                 for (Banca banca : arrayBancas) {
 
-                    Log.e("JSON", "" + banca.getBanca());
                     adicionarMarcador(banca);
+                    Log.e("JSON", "" + banca.getBanca());
+
+                    /* Código para Mostrar banca relacionda a revista selecionada
+                    if(revista.getId() == banca.getIdMarvel()){
+                        adicionarMarcador(banca);
+                        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(banca.getCoordenadas(), 12);
+                        map.moveCamera(update);
+                    }*/
 
                 }
 
             } catch (Exception e){}
-            //mostraLocalizacaoAtual();
+
+            // Move a camera para o primeiro item do Array de Bancas
+            update = CameraUpdateFactory.newLatLngZoom(arrayBancas[0].getCoordenadas(), 12);
+            map.moveCamera(update);
 
         }
     }
@@ -338,14 +348,9 @@ public class RevistaDetalhes extends AppCompatActivity
      */
     public void adicionarMarcador(Banca banca){
         MarkerOptions markerOptions = new MarkerOptions();
-
-
-
         markerOptions.position(banca.getCoordenadas()).title(banca.getBanca())
-                .snippet("#"+banca.getIdMarvel()+
-                        "#"+banca.getPreco()+"#");
-
-                marker = map.addMarker(markerOptions);
+                .snippet(banca.getBanca());
+        marker = map.addMarker(markerOptions);
 
     }
 

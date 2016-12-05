@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatImageButton img_button;
     private ProgressBar progressBar;
     private TextView marvelLogo;
+    private static final String REVISTA_SELECIONADA_BUNDLE = "revistaSelecionada";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 //revista = connectionHelper.getData().getRevista(position);
                 ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,null);
                 Intent intent = new Intent(MainActivity.this, RevistaDetalhes.class);
-                intent.putExtra("revistaSelecionada", revista);
+                intent.putExtra(REVISTA_SELECIONADA_BUNDLE, revista);
                 startActivity(intent, compat.toBundle());
             }
         });

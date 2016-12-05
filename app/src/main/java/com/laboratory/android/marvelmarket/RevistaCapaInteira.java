@@ -21,6 +21,7 @@ import com.squareup.picasso.Picasso;
 public class RevistaCapaInteira extends AppCompatActivity {
     private ImageView img_capaRevista;
     private Revista revista = new Revista();
+    private static final String REVISTA_SELECIONADA_BUNDLE = "revistaSelecionada";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class RevistaCapaInteira extends AppCompatActivity {
 
         //->  Pegando dados da Activity anterior
         Intent intent = getIntent();
-        revista = (Revista) intent.getSerializableExtra("revistaSelecionada");
+        revista = (Revista) intent.getSerializableExtra(REVISTA_SELECIONADA_BUNDLE);
         //<-
 
         Picasso.with(this).load(revista.getThumbnail("grande")).into(img_capaRevista, new
