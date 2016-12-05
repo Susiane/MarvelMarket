@@ -354,5 +354,11 @@ public class RevistaDetalhes extends AppCompatActivity
 
     }
 
+    public void Teste(){
+
+    }
+
+
+
 
 }
