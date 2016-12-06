@@ -10,7 +10,7 @@ As informações das revistas estão vindo da API da Marvel e a dos pontos de ve
 
 Visão futura:
 Permitir que o usuário selecione um ponto de venda no mapa e efetue a compra de revistas;
-Aplicar padrão MVC e Testes;
+Aplicar arquitetura limpa e implementação de Testes;
 
 Foram utilizadas as bibliotecas de terceiros:
 
